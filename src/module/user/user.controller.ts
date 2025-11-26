@@ -15,5 +15,5 @@ export const UserController = {
   async create(req: Request, res: Response) {
     const user = await UserService.create(req.body);
     return res.status(201).json(user);
-  },
+  },  
 };

@@ -1,7 +1,23 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
-export const prisma = new PrismaClient({
-  adapter: {
-    url: process.env.DATABASE_URL!
-  }
-});
+const prisma = new PrismaClient();
+
+export async function resetDatabase() {
+  const tables = [
+    "Visitor",
+    "Employee",
+    "Resident",
+    "User",
+    "Lot"
+  ];
+
+  // Gera: TRUNCATE "Visitante", "Employee", ... CASCADE;
+  const truncateQuery = `
+    TRUNCATE TABLE ${tables.map(t => `"${t}"`).join(", ")} CASCADE;
+  `;
+
+  await prisma.$executeRawUnsafe(truncateQuery);
+}
+
+
+export default prisma;
