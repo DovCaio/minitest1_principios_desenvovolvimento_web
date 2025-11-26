@@ -6,5 +6,7 @@ const useRouter = Router();
 
 useRouter.post("/", EmployeeControler.create);
 useRouter.put("/", EmployeeControler.update);
+useRouter.get("/:id", EmployeeControler.get);
+useRouter.delete("/:id", EmployeeControler.delete);
 
 export default useRouter;

@@ -9,6 +9,14 @@ export const EmployeeService =  {
 
     async update(userDto: UserDTO) {
         return EmployeeRepository.updateEmployee(userDto);
+    },
+
+    async get(cpf: string) {
+        return EmployeeRepository.getEmployee(cpf);
+    },
+
+    async delete(cpf: string) {
+        return EmployeeRepository.deleteEmployee(cpf);
     }
 
 }

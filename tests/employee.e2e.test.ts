@@ -2,11 +2,14 @@ import request from "supertest";
 import app from "../src/app"; // seu Express
 import prisma from "../src/prisma";
 import { resetDatabase } from "../src/prisma";
+import e from "express";
 
 describe("Employee Integration Tests", () => {
   afterAll(async () => {
     await resetDatabase();
   });
+
+  const employee_ids : string[] = [];
 
   describe("CRUD", () => {
     it("should create an employee with linked user", async () => {
@@ -40,6 +43,7 @@ describe("Employee Integration Tests", () => {
       expect(employee).not.toBeNull();
       expect(employee?.employeeType).toBe("GateEmployee");
       expect(employee?.user.name).toBe("Alice Johnson");
+      employee_ids.push(employee!.userCpf);
     });
 
     it("should update an employee with linked user", async () => {
@@ -73,6 +77,50 @@ describe("Employee Integration Tests", () => {
       expect(employee).not.toBeNull();
       expect(employee?.employeeType).toBe("LeisureAreaEmployee");
       expect(employee?.user.name).toBe("John Smith");
+    });
+
+    it("should get an employee with linked user", async () => {
+
+      const response = await request(app).get(`/employee/${employee_ids[0]}`);
+
+      expect(response.status).toBe(200);
+
+      expect(response.status).toBe(200);
+      expect(response.body.user.cpf).toBe(employee_ids[0]);
+      expect(response.body.employeeType).toBe(
+        "LeisureAreaEmployee"
+      );
+
+      const employee = await prisma.employee.findFirst({
+        where: {
+          user: {
+            cpf: employee_ids[0],
+          },
+        },
+        include: { user: true },
+      });
+
+      expect(employee).not.toBeNull();
+      expect(employee?.employeeType).toBe("LeisureAreaEmployee");
+      expect(employee?.user.name).toBe("John Smith");
+    });
+
+    it("should delete an employee with linked user", async () => {
+
+      const response = await request(app).delete(`/employee/${employee_ids[0]}`);
+
+      expect(response.status).toBe(204);
+
+      const employee = await prisma.employee.findFirst({
+        where: {
+          user: {
+            cpf: employee_ids[0],
+          },
+        },
+        include: { user: true },
+      });
+
+      expect(employee).toBeNull();
     });
   });
 });

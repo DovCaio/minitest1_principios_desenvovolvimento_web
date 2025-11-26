@@ -45,5 +45,28 @@ export const EmployeeRepository = {
       },
       include: { user: true}
     });
+  },
+
+  async getEmployee(cpf: string) {
+    return prisma.employee.findUnique({
+        where: {
+            userCpf: cpf,
+        },
+        include: { user: true },
+    });
+  },
+
+  async deleteEmployee(cpf: string) {
+    await prisma.employee.delete({
+        where: {
+            userCpf: cpf,
+        },
+    });
+
+    await prisma.user.delete({
+        where: {
+            cpf: cpf,
+        },
+    });
   }
 };
