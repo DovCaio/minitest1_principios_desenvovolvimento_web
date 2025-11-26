@@ -6,5 +6,15 @@ generator client {
 
 datasource db {
   provider = "postgresql" 
-  url      = env("DATABASE_URL")
 }
+
+model User {
+
+  cpf String @id @unique
+  telefone String @unique
+  nome String
+
+
+
+}
+
