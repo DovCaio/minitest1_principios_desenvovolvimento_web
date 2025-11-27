@@ -1,8 +1,8 @@
 import { UserType } from "@prisma/client";
-import {EmployeeDTO} from "./EmployeeDTO"
+import {EmployeeCreateDTO} from "../employee/EmployeeCreateDTO"
 import { IsEnum, IsNotEmpty, IsString, Length, IsOptional } from "class-validator";
 
-export class UserDTO {
+export class UserCreateDTO {
   @IsString()
   @Length(11, 11, { message: "CPF deve ter exatamente 11 dígitos" })
   cpf!: string;
@@ -19,5 +19,5 @@ export class UserDTO {
   userType!: UserType;
 
   @IsOptional()
-  employee?: EmployeeDTO
+  employee?: EmployeeCreateDTO
 }

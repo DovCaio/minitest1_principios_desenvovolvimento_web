@@ -48,7 +48,6 @@ describe("Employee Integration Tests", () => {
 
     it("should update an employee with linked user", async () => {
       const payload = {
-        cpf: "55544433321",
         phone: "11988880000",
         name: "John Smith",
         userType: "EMPLOYEE",
@@ -57,10 +56,10 @@ describe("Employee Integration Tests", () => {
         },
       };
 
-      const response = await request(app).put("/employee").send(payload);
+      const response = await request(app).put(`/employee/${employee_ids[0]}`).send(payload);
 
       expect(response.status).toBe(200);
-      expect(response.body.user.cpf).toBe(payload.cpf);
+      expect(response.body.user.cpf).toBe(employee_ids[0]);
       expect(response.body.employeeType).toBe(
         payload.employee.employeeType
       );
@@ -68,7 +67,7 @@ describe("Employee Integration Tests", () => {
       const employee = await prisma.employee.findFirst({
         where: {
           user: {
-            cpf: payload.cpf,
+            cpf: employee_ids[0],
           },
         },
         include: { user: true },

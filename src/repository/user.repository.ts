@@ -1,9 +1,9 @@
-import { UserDTO } from "../dto/UserDTO";
+import { UserCreateDTO } from "../dto/user/UserCreateDTO";
 import prisma from "../prisma";
 
 
 export const UserRepository = {
-  async create(data: UserDTO) {
+  async create(data: UserCreateDTO) {
     return prisma.user.create({
       data: {
         cpf: data.cpf,

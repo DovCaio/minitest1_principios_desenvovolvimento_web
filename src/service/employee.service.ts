@@ -1,14 +1,15 @@
-import { UserDTO } from "../dto/UserDTO";
+import { UserCreateDTO } from "../dto/user/UserCreateDTO";
+import { UserPutDTO } from "../dto/user/UserPutDTO";
 import { EmployeeRepository } from "../repository/employee.repository";
 
 export const EmployeeService =  {
 
-    async create(userDto: UserDTO) {
+    async create(userDto: UserCreateDTO) {
         return EmployeeRepository.createEmployee(userDto);
     },
 
-    async update(userDto: UserDTO) {
-        return EmployeeRepository.updateEmployee(userDto);
+    async update(cpf: string, userDto: UserPutDTO) {
+        return EmployeeRepository.updateEmployee(cpf, userDto);
     },
 
     async get(cpf: string) {

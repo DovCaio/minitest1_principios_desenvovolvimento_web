@@ -1,8 +1,9 @@
-import { UserDTO } from "../dto/UserDTO";
+import { UserCreateDTO } from "../dto/user/UserCreateDTO";
+import { UserPutDTO } from "../dto/user/UserPutDTO";
 import prisma from "../prisma";
 import { UserRepository } from "./user.repository";
 export const EmployeeRepository = {
-  async createEmployee(userDto: UserDTO) {
+  async createEmployee(userDto: UserCreateDTO) {
 
     if (!userDto.employee) {
         throw new Error("EmployeeDTO is required to create an employee"); //depois personalizar os erros
@@ -22,11 +23,11 @@ export const EmployeeRepository = {
     });
   },
 
-  async updateEmployee(userDto: UserDTO) {
+  async updateEmployee(cpf: string, userDto: UserPutDTO) {
 
 
     const user = await prisma.user.update({
-        where: { cpf: userDto.cpf },
+        where: { cpf: cpf },
         data: {
             phone: userDto.phone,
             name: userDto.name,
@@ -38,7 +39,7 @@ export const EmployeeRepository = {
 
     return prisma.employee.update({
       where: {
-        userCpf: userDto.cpf,
+        userCpf: cpf,
       },
       data: {
         employeeType: userDto.employee?.employeeType,

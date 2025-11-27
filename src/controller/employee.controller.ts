@@ -8,7 +8,8 @@ export const EmployeeControler =  {
         return res.status(201).json(employee);
     },
     async update(req: Request, res: Response) {
-        const employee = await EmployeeService.update(req.body);
+        const { cpf } = req.params;
+        const employee = await EmployeeService.update(cpf, req.body);
         return res.status(200).json(employee);
     },
     async get(req: Request, res: Response) {
