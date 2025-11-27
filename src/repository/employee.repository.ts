@@ -1,6 +1,6 @@
-import { UserDTO } from "../../dto/UserDTO";
-import prisma from "../../prisma";
-import { UserRepository } from "../user/user.repository";
+import { UserDTO } from "../dto/UserDTO";
+import prisma from "../prisma";
+import { UserRepository } from "./user.repository";
 export const EmployeeRepository = {
   async createEmployee(userDto: UserDTO) {
 

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { EmployeeService } from "./employee.service";
+import { EmployeeService } from "../service/employee.service";
 
 
 export const EmployeeControler =  {

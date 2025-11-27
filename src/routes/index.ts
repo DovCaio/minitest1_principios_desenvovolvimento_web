@@ -1,5 +1,5 @@
 import { Router } from "express";
-import employeeRoutes from "../module/employee/employee.route"
+import employeeRoutes from "./employee.route"
 
 const routes = Router();
 

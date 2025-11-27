@@ -1,5 +1,5 @@
-import { UserDTO } from "../../dto/UserDTO";
-import prisma from "../../prisma";
+import { UserDTO } from "../dto/UserDTO";
+import prisma from "../prisma";
 
 
 export const UserRepository = {

@@ -1,5 +1,5 @@
-import { UserDTO } from "../../dto/UserDTO";
-import { EmployeeRepository } from "./employee.repository";
+import { UserDTO } from "../dto/UserDTO";
+import { EmployeeRepository } from "../repository/employee.repository";
 
 export const EmployeeService =  {
 
