@@ -52,6 +52,16 @@ describe("Employee Integration Tests", () => {
         expect(response.body.intercom).toBe("A124");
     });
 
+    it("should get many an lot's", async () => {
+
+        const response = await request(app)
+            .get(`/lot`)
+            .expect(200);
+
+        expect(Array.isArray(response.body)).toBe(true);
+        expect(response.body.length).toBeGreaterThan(0);
+    });
+
   })
 
 });

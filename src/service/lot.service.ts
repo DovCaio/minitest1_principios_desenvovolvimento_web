@@ -14,5 +14,9 @@ export const LotService = {
     async get(id: number) {
         const lot = await LotRepository.get(id);
         return lot;
+    },
+    async getAll() {
+        const lots = await LotRepository.getAll();
+        return lots;
     }
 }

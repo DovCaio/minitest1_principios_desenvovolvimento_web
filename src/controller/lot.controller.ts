@@ -14,5 +14,9 @@ export const LotController =  {
         const { id } = req.params;
         const lot = await LotService.get(Number(id));
         return res.status(200).json(lot);
+    },
+    async getAll(req: Request, res: Response) {
+        const lot = await LotService.getAll();
+        return res.status(200).json(lot);
     }
 }
