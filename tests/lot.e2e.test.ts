@@ -40,6 +40,18 @@ describe("Employee Integration Tests", () => {
         expect(response.body.intercom).toBe(payload.intercom);
     });
 
+
+    it("should get an lot", async () => {
+
+        const response = await request(app)
+            .get(`/lot/${ids[0]}`)
+            .expect(200);
+
+
+        expect(response.body).toHaveProperty("id");
+        expect(response.body.intercom).toBe("A124");
+    });
+
   })
 
 });

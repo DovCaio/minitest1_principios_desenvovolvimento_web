@@ -9,5 +9,10 @@ export const LotController =  {
         const { id } = req.params;
         const lot = await LotService.update(Number(id), req.body);
         return res.status(200).json(lot);
+    },
+    async get(req: Request, res: Response) {
+        const { id } = req.params;
+        const lot = await LotService.get(Number(id));
+        return res.status(200).json(lot);
     }
 }

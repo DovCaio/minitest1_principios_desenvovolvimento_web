@@ -15,6 +15,11 @@ export const LotRepository = {
             where: { id },
             data
         });
+    },
+    async get(id: number) {
+        return prisma.lot.findUnique({
+            where: { id }
+        });
     }
 
 }

@@ -10,5 +10,9 @@ export const LotService = {
     async update(id: number, data: LotPutDTO) {
         const lot = await LotRepository.update(id, data);
         return lot;
+    },
+    async get(id: number) {
+        const lot = await LotRepository.get(id);
+        return lot;
     }
 }
