@@ -19,5 +19,10 @@ export const ResidentController =  {
     async getAll(req: Request, res: Response) {
         const residents = await ResidentService.getAll();
         return res.status(200).json(residents);
+    },
+    async delete(req: Request, res: Response) {
+        const { cpf } = req.params;
+        await ResidentService.delete(cpf);
+        return res.status(201).json({ message: "Resident deleted successfully" });
     }
 }

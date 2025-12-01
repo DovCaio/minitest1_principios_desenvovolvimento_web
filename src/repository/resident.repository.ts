@@ -45,5 +45,14 @@ export const ResidentRepository = {
         return prisma.resident.findMany({
             include: { user: true },
         });
+    },
+    async delete(cpf: string) {
+        return prisma.resident.deleteMany({
+            where: {
+                user: {
+                    cpf: cpf,
+                },
+            },
+        });
     }
 }

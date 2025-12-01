@@ -12,5 +12,8 @@ export const ResidentService = {
     },
     async getAll() {
         return ResidentRepository.getAll();
+    },
+    async delete(cpf: string) {
+        ResidentRepository.delete(cpf);
     }
 }

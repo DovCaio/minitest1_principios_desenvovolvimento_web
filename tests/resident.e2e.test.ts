@@ -112,6 +112,24 @@ describe("Employee Integration Tests", () => {
       expect(response.body[0].user.userType).toBe("RESIDENT");
     });
 
+    it("should delete resident", async () => {
+
+      const response = await request(app).delete("/resident/12345678902");
+
+      expect(response.status).toBe(201);
+
+      const resident = await prisma.resident.findFirst({
+        where: {
+          user: {
+            cpf: "12345678902",
+          },
+        },
+        include: { user: { include: { resident: true } } },
+      });
+
+      expect(resident).toBeNull();
+    });
+
   });
 
 
