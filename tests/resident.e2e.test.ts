@@ -35,6 +35,36 @@ describe("Employee Integration Tests", () => {
 
       expect(resident).not.toBeNull();
       expect(resident?.user.name).toBe("Bob Williams");
+      expect(resident?.user.phone).toBe("11999998888");
+      expect(resident?.user.resident).toBeDefined();
+      expect(resident?.user.userType).toBe("RESIDENT");
+    });
+
+    it("should put an resident", async () => {
+      const payload = {
+        phone: "11999998885",
+        name: "Bob Williams",
+        userType: "RESIDENT",
+      };
+
+      const response = await request(app).post("/resident/12345678902").send(payload);
+
+      expect(response.status).toBe(200);
+      expect(response.body.user.cpf).toBe("12345678902");
+      expect(response.body.user.name).toBe(payload.name);
+      expect(response.body.user.userType).toBe(payload.userType);
+      const resident = await prisma.resident.findFirst({
+        where: {
+          user: {
+            cpf: "12345678902",
+          },
+        },
+        include: { user: { include: { resident: true } } },
+      });
+
+      expect(resident).not.toBeNull();
+      expect(resident?.user.name).toBe("Bob Williams");
+      expect(resident?.user.phone).toBe("11999998885");
       expect(resident?.user.resident).toBeDefined();
       expect(resident?.user.userType).toBe("RESIDENT");
     });
