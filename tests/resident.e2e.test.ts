@@ -95,6 +95,23 @@ describe("Employee Integration Tests", () => {
       expect(resident?.user.userType).toBe("RESIDENT");
     });
 
+
+    it("should get all resident's", async () => {
+
+      const response = await request(app).get("/resident");
+
+      expect(response.status).toBe(200);
+
+      expect(response.body.length).toBeGreaterThan(0);
+
+      const resident = await prisma.resident.findMany({
+        include: { user: { include: { resident: true } } },
+      });
+
+      expect(resident.length).toBeGreaterThan(0);
+      expect(response.body[0].user.userType).toBe("RESIDENT");
+    });
+
   });
 
 

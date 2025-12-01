@@ -40,5 +40,10 @@ export const ResidentRepository = {
             },
             include: { user: true },
         });
+    },
+    async getAll() {
+        return prisma.resident.findMany({
+            include: { user: true },
+        });
     }
 }

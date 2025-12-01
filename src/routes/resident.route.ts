@@ -6,6 +6,7 @@ const useRouter = Router();
 useRouter.post("/", ResidentController.create);
 useRouter.put("/:cpf", ResidentController.update);
 useRouter.get("/:cpf", ResidentController.getOne);
+useRouter.get("/", ResidentController.getAll);
 
 
 export default useRouter;

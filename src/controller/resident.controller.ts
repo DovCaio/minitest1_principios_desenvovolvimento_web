@@ -15,5 +15,9 @@ export const ResidentController =  {
         const { cpf } = req.params;
         const resident = await ResidentService.getOne(cpf);
         return res.status(200).json(resident);
+    },
+    async getAll(req: Request, res: Response) {
+        const residents = await ResidentService.getAll();
+        return res.status(200).json(residents);
     }
 }

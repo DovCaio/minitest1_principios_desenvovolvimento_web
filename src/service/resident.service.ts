@@ -9,5 +9,8 @@ export const ResidentService = {
     },
     async getOne(cpf: string) {
         return ResidentRepository.getOne(cpf);
+    },
+    async getAll() {
+        return ResidentRepository.getAll();
     }
 }
