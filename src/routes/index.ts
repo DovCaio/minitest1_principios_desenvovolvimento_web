@@ -1,6 +1,7 @@
 import { Router } from "express";
 import employeeRoutes from "./employee.route";
 import { serviceRoutes } from "./serviceRequest.routes";
+import lotRoute from "./lot.route";
 
 const routes = Router();
 
