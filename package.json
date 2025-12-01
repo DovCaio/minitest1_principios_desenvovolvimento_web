@@ -11,7 +11,8 @@
     "test": "jest --runInBand --coverage",
     "test:employee": "jest --runInBand --testPathPatterns=tests/employee.e2e.test.ts",
     "test:lot": "jest --runInBand --testPathPatterns=tests/lot.e2e.test.ts",
-    "test:service": "jest --runInBand --testPathPatterns=tests/serviceRequest.e2e.test.ts"
+    "test:service": "jest --runInBand --testPathPatterns=tests/serviceRequest.e2e.test.ts",
+    "test:visitor": "jest --runInBand --testPathPatterns=tests/visitant.e2e.test.ts"
   },
   "repository": {
     "type": "git",

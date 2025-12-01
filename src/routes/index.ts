@@ -2,11 +2,13 @@ import { Router } from "express";
 import employeeRoutes from "./employee.route";
 import { serviceRoutes } from "./serviceRequest.routes";
 import lotRoute from "./lot.route";
+import visitantRoutes from "./visitant.route";
 
 const routes = Router();
 
 routes.use("/employee", employeeRoutes);
 routes.use("/services", serviceRoutes);
 routes.use("/lot", lotRoute);
+routes.use("/visitor", visitantRoutes);
 
 export default routes;
