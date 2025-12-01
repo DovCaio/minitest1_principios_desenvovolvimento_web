@@ -1,4 +1,5 @@
 import { UserCreateDTO } from "../dto/user/UserCreateDTO";
+import { UserPutDTO } from "../dto/user/UserPutDTO";
 import prisma from "../prisma";
 import { UserRepository } from "./user.repository";
 
@@ -12,6 +13,15 @@ export const VisitorRepository = {
         user: {
             connect: { cpf: user.cpf }
         }
+      },
+      include: { user: true}
+    });
+  },
+    async update(cpf: string, data: UserPutDTO) {
+    const user = await UserRepository.update(cpf, data)
+    return prisma.visitor.findFirst({
+      where: {
+        userCpf: cpf,
       },
       include: { user: true}
     });
