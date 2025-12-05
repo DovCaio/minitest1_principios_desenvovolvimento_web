@@ -26,5 +26,29 @@ export const ServiceRequestRepository = {
         return await prisma.serviceRequest.findMany({
             orderBy: { createdAt: 'desc' }
         });
+    },
+
+    async findById(id: number) {
+        return await prisma.serviceRequest.findUnique({
+            where: { id }
+        });
+    },
+
+    async update(id: number, data: ServiceRequestPutDTO) {
+        return await prisma.serviceRequest.update({
+            where: { id },
+            data: {
+                description: data.description,
+                type: data.type,
+                status: data.status,
+                targetLotId: data.targetLotId
+            }
+        });
+    },
+
+    async delete(id: number) {
+        return await prisma.serviceRequest.delete({
+            where: { id }
+        });
     }
 };
