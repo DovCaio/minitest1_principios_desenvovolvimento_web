@@ -96,5 +96,24 @@ describe("Employee Integration Tests", () => {
       expect(visitor?.user.phone).toBe("11988885125");
       expect(visitor?.user.userType).toBe("VISITOR");
     });
+
+        it("should get all the visitor's with linked user", async () => {
+
+      const response = await request(app)
+        .get(`/visitor/`)
+
+      expect(response.status).toBe(200);
+
+      
+
+      expect(response.body.length).toBeGreaterThan(0);
+            const visitor = await prisma.visitor.findMany({
+        include: { user: true },
+      });
+
+      expect(visitor).not.toBeNull();
+      expect(visitor.length).toBeGreaterThan(0);
+    });
+
   });
 });
