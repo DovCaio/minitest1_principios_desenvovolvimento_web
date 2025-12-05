@@ -1,4 +1,5 @@
 import { ServiceRequestCreateDTO } from "../dto/serviceRequest/ServiceRequestCreateDTO";
+import { ServiceRequestPutDTO } from "../dto/serviceRequest/ServiceRequestPutDTO";
 import prisma from "../prisma";
 
 export const ServiceRequestRepository = {
