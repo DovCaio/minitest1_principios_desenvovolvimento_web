@@ -7,4 +7,7 @@ export const VisitorService = {
   async update(cpf: string, data: any) {
     return VisitorRepository.update(cpf, data);
   },
+  async getOne(cpf: string) {
+    return VisitorRepository.getOne(cpf);
+  }
 };

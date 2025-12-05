@@ -25,5 +25,13 @@ export const VisitorRepository = {
       },
       include: { user: true}
     });
+  },
+  async getOne(cpf: string) {
+    return prisma.visitor.findFirst({
+      where: {
+        userCpf: cpf,
+      },
+      include: { user: true}
+    });
   }
 };

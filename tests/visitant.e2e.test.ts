@@ -70,5 +70,31 @@ describe("Employee Integration Tests", () => {
       expect(visitor?.user.phone).toBe(payload.phone);
       expect(visitor?.user.userType).toBe("VISITOR");
     });
+
+    it("should get an visitor with linked user", async () => {
+      const cpfToGet = "00044433321";
+
+      const response = await request(app)
+        .get(`/visitor/${cpfToGet}`)
+
+      expect(response.status).toBe(200);
+      expect(response.body.user.cpf).toBe(cpfToGet);
+      expect(response.body.user.name).toBe("Galand Smith");
+      expect(response.body.user.phone).toBe("11988885125");
+
+      const visitor = await prisma.visitor.findFirst({
+        where: {
+          user: {
+            cpf: cpfToGet,
+          },
+        },
+        include: { user: true },
+      });
+
+      expect(visitor).not.toBeNull();
+      expect(visitor?.user.name).toBe("Galand Smith");
+      expect(visitor?.user.phone).toBe("11988885125");
+      expect(visitor?.user.userType).toBe("VISITOR");
+    });
   });
 });

@@ -12,5 +12,11 @@ export const VisitorController =  {
         
         const visitor = await VisitorService.update(cpf, data);
         return res.status(200).json(visitor);
+    },
+    async getOne(req: Request, res: Response) {
+        const { cpf } = req.params;
+        
+        const visitor = await VisitorService.getOne(cpf);
+        return res.status(200).json(visitor);
     }
 }
