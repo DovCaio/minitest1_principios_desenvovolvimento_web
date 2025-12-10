@@ -33,5 +33,19 @@ export const VisitorRepository = {
       },
       include: { user: true}
     });
+  },
+  async getAll() {
+    return prisma.visitor.findMany({
+      include: { user: true}
+    });
+  },
+  async delete(cpf: string) {
+    await prisma.visitor.deleteMany({
+      where: {
+        userCpf: cpf,
+      },
+    });
+    
+    await UserRepository.delete(cpf);
   }
 };

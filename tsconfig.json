@@ -13,5 +13,6 @@
 
     "strictPropertyInitialization": false, 
     "strictNullChecks": true
-  }
+  },
+  "include": ["src/**/*"]
 }

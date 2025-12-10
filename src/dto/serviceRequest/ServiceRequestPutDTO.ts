@@ -1,8 +1,20 @@
 import { ServiceStatus, ServiceType } from "@prisma/client";
+import { IsEnum, IsInt, IsOptional, IsString } from "class-validator";
 
-export interface ServiceRequestPutDTO {
-    description?: string;      
-    type?: ServiceType;        
-    status?: ServiceStatus;   
-    targetLotId?: number;      
+export class ServiceRequestPutDTO {
+    @IsOptional()
+    @IsString()
+    description?: string;
+
+    @IsOptional()
+    @IsEnum(ServiceType)
+    type?: ServiceType;
+
+    @IsOptional()
+    @IsEnum(ServiceStatus)
+    status?: ServiceStatus;
+
+    @IsOptional()
+    @IsInt()
+    targetLotId?: number;
 }

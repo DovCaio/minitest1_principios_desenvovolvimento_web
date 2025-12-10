@@ -9,5 +9,11 @@ export const VisitorService = {
   },
   async getOne(cpf: string) {
     return VisitorRepository.getOne(cpf);
-  }
+  },
+  async getAll() {
+    return VisitorRepository.getAll();
+  },
+  async delete(cpf: string) {
+    await VisitorRepository.delete(cpf);
+  },
 };
