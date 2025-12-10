@@ -1,9 +1,9 @@
 import { Router } from "express";
 import employeeRoutes from "./employee.route";
-import { leisureRoutes } from "./leisureArea.routes";
+import { leisureRoutes } from "./leisureArea.route";
 import lotRoute from "./lot.route";
 import residentRoutes from "./resident.route";
-import { serviceRoutes } from "./serviceRequest.routes";
+import { serviceRoutes } from "./serviceRequest.route";
 import visitantRoutes from "./visitant.route";
 
 const routes = Router();

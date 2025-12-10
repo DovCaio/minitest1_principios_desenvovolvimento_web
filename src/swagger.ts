@@ -9,7 +9,7 @@ const options = {
       version: "1.0.0",
     },
   },
-  apis: ["./routes/*.ts"], // Arquivos onde você coloca as anotações
+  apis: ["./**/*route.ts"], //Sei que não é a melhor forma, mas funciona por enquanto
 };
 
 const swaggerSpec = swaggerJSDoc(options);
