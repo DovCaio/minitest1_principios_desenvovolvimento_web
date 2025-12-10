@@ -1,6 +1,6 @@
 import { UserType } from "@prisma/client";
-import {EmployeeCreateDTO} from "../employee/EmployeeCreateDTO"
-import { IsEnum, IsNotEmpty, IsString, Length, IsOptional } from "class-validator";
+import { IsEnum, IsNotEmpty, IsOptional, IsString, Length } from "class-validator";
+import { EmployeeCreateDTO } from "../employee/EmployeeCreateDTO";
 
 export class UserCreateDTO {
   @IsString()
