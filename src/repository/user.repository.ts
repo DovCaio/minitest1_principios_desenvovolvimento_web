@@ -23,5 +23,10 @@ export const UserRepository = {
         userType: data.userType,
       }
     })
+  },
+  async delete(cpf: string) {
+    await prisma.user.delete({
+      where: { cpf: cpf },
+    });
   }
 };

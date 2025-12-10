@@ -12,5 +12,5 @@ export class EmployeePutDTO {
 
     @IsOptional()
     @IsEnum(EmployeeType)
-    type?: EmployeeType;
+    employeeType?: EmployeeType;
 }

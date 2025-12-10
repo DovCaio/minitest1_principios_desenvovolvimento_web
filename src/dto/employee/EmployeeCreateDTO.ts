@@ -17,5 +17,5 @@ export class EmployeeCreateDTO {
 
     @IsNotEmpty()
     @IsEnum(EmployeeType, { message: "Tipo de funcionário inválido" })
-    type: EmployeeType;
+    employeeType: EmployeeType;
 }

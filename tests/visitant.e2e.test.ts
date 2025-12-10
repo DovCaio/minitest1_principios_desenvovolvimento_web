@@ -74,8 +74,7 @@ describe("Employee Integration Tests", () => {
     it("should get an visitor with linked user", async () => {
       const cpfToGet = "00044433321";
 
-      const response = await request(app)
-        .get(`/visitor/${cpfToGet}`)
+      const response = await request(app).get(`/visitor/${cpfToGet}`);
 
       expect(response.status).toBe(200);
       expect(response.body.user.cpf).toBe(cpfToGet);
@@ -97,17 +96,13 @@ describe("Employee Integration Tests", () => {
       expect(visitor?.user.userType).toBe("VISITOR");
     });
 
-        it("should get all the visitor's with linked user", async () => {
-
-      const response = await request(app)
-        .get(`/visitor/`)
+    it("should get all the visitor's with linked user", async () => {
+      const response = await request(app).get(`/visitor/`);
 
       expect(response.status).toBe(200);
 
-      
-
       expect(response.body.length).toBeGreaterThan(0);
-            const visitor = await prisma.visitor.findMany({
+      const visitor = await prisma.visitor.findMany({
         include: { user: true },
       });
 
@@ -115,5 +110,21 @@ describe("Employee Integration Tests", () => {
       expect(visitor.length).toBeGreaterThan(0);
     });
 
+    it("should delete the visitor with linked user", async () => {
+      const cpfToDelete = "00044433321";
+
+      const response = await request(app).delete(`/visitor/${cpfToDelete}`);
+
+      expect(response.status).toBe(204);
+
+      const visitor = await prisma.visitor.findFirst({
+        where: {
+          userCpf: cpfToDelete,
+        },
+        include: { user: true },
+      });
+
+      expect(visitor).toBeNull();
+    });
   });
 });

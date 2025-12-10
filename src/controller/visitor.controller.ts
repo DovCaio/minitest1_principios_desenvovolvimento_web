@@ -18,5 +18,15 @@ export const VisitorController =  {
         
         const visitor = await VisitorService.getOne(cpf);
         return res.status(200).json(visitor);
+    },
+    async getAll(req: Request, res: Response) {
+        const visitors = await VisitorService.getAll();
+        return res.status(200).json(visitors);
+    },
+    async delete(req: Request, res: Response) {
+        const { cpf } = req.params;
+        await VisitorService.delete(cpf);
+        
+        return res.status(204).send();
     }
 }
